@@ -2,8 +2,7 @@ version: '2'
 services:
   whatsapp:
     container_name: whatsapp
-    build: .
-    # image: 'docker.pkg.github.com/aakashlpin/whatsapp/whatsapp:latest'
+    image: 'docker.pkg.github.com/aakashlpin/whatsapp/whatsapp:latest'
     env_file:
       - ~/apps/whatsapp/docker.env
     restart: always

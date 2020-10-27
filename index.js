@@ -22,9 +22,14 @@ app.use((req, res, next) => {
 
 async function fire(data) {
   try {
-    await axios.post(MESSAGE_HANDLER_URI, data);
+    if (MESSAGE_HANDLER_URI.includes(',')) {
+      const uris = MESSAGE_HANDLER_URI.split(',');
+      await Promise.all(uris.map((uri) => axios.post(uri, data)));
+    } else {
+      await axios.post(MESSAGE_HANDLER_URI, data);
+    }
   } catch (e) {
-    console.log('fire error', e);
+    console.log('fire error', e.response.status, e.response.data);
   }
 }
 
