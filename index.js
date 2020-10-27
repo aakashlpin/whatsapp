@@ -50,6 +50,7 @@ async function start(client) {
 
   app.listen(PORT, () => {
     console.log(`\n• Whatsapp Web listening on port ${PORT}!`);
+    console.log(`\n• Whatsapp Web is using URI ${MESSAGE_HANDLER_URI} for message handling`);
   });
 }
 
