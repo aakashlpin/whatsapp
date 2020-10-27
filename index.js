@@ -5,18 +5,26 @@ import express from 'express';
 
 const { default: PQueue } = require('p-queue');
 
-const { PORT, MESSAGE_HANDLER_URI } = process.env;
+const { PORT, MESSAGE_HANDLER_URI, API_KEY } = process.env;
 
 const queue = new PQueue({ concurrency: 2 });
 const app = express();
 app.use(express.json());
 
+app.use((req, res, next) => {
+  const apiKey = req.get('key');
+  if (!apiKey || apiKey !== API_KEY) {
+    res.status(401).json({ error: 'unauthorised' });
+  } else {
+    next();
+  }
+});
+
 async function fire(data) {
   try {
     await axios.post(MESSAGE_HANDLER_URI, data);
   } catch (e) {
-    console.log('fire error');
-    console.log(e);
+    console.log('fire error', e);
   }
 }
 
