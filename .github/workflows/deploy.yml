@@ -3,7 +3,7 @@ name: Sync to ssh
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   build:
