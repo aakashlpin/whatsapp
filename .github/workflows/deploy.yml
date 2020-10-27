@@ -1,0 +1,43 @@
+name: Sync to ssh
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12.18
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.18'
+    - name: npm install
+      run: |
+        npm install
+      env:
+        CI: true
+    - name: Publish to Github Packages Registry
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: aakashlpin/whatsapp/whatsapp
+        registry: docker.pkg.github.com
+        username: ${{ secrets.GITBUH_USERNAME }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        dockerfile: Dockerfile
+        tags: latest
+    - name: Pull latest image to digitalocean
+      uses: appleboy/ssh-action@master
+      env:
+        GITBUH_USERNAME: ${{ secrets.GITBUH_USERNAME }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        host: ${{ secrets.DO_HOST }}
+        username: ${{ secrets.DO_USERNAME }}
+        key: ${{ secrets.SSH_ID_RSA }}
+        envs: GITBUH_USERNAME, GITHUB_TOKEN
+        script: |
+          docker login docker.pkg.github.com -u $GITBUH_USERNAME -p $GITHUB_TOKEN
+          docker pull docker.pkg.github.com/aakashlpin/whatsapp/whatsapp:latest
