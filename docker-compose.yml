@@ -1,10 +1,14 @@
-version: '2'
+version: '3'
+
 services:
-  whatsapp:
-    container_name: whatsapp
-    image: 'docker.pkg.github.com/aakashlpin/whatsapp/whatsapp:latest'
-    env_file:
-      - ~/apps/whatsapp/docker.env
-    restart: always
+  frontend:
+    container_name: whatsapp_dev
+    build: .
+    command: yarn dev
     ports:
-      - '3002:3000'
+      - 4004:3000
+    env_file:
+      - ./.env.local
+    volumes:
+      - ./:/codebase
+      - /codebase/node_modules

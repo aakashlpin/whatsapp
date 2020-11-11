@@ -21,7 +21,8 @@ app.use((req, res, next) => {
 });
 
 async function fire(data) {
-  console.log(data);
+  console.log('what!!', data);
+  // console.log(data);
   // try {
   //   if (MESSAGE_HANDLER_URI.includes(',')) {
   //     const uris = MESSAGE_HANDLER_URI.split(',');
@@ -59,7 +60,7 @@ async function start(client) {
   client.onIncomingCall(wh('incoming_call'));
   client.onPlugged(wh('plugged'));
   client.onStateChanged((state) => {
-    console.log('stateChanged', state);
+    // console.log('stateChanged', state);
     if (state === 'CONFLICT' || state === 'UNLAUNCHED') client.forceRefocus();
     if (state === 'UNPAIRED') console.log('LOGGED OUT!!!!');
   });

@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "node -r esm index.js",
+    "dev": "npx nodemon -e js -r esm index.js",
     "start": "node -r esm index.js"
   },
   "dependencies": {
