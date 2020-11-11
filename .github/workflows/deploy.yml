@@ -40,5 +40,5 @@ jobs:
         envs: GITBUH_USERNAME, GITHUB_TOKEN
         script: |
           docker login docker.pkg.github.com -u $GITBUH_USERNAME -p $GITHUB_TOKEN
-          cd ~/apps/whatsapp && docker-compose pull
-          cd ~/apps/whatsapp && docker-compose up --detach --build
+          cd ~/apps/whatsapp && docker-compose -f docker-compose-prod.yml pull
+          cd ~/apps/whatsapp && docker-compose -f docker-compose-prod.yml up --detach --build
