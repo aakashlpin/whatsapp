@@ -129,10 +129,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@open-wa/wa-automate@3.0.16":
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/@open-wa/wa-automate/-/wa-automate-3.0.16.tgz#3152438f6a0670d69644bf7edb42617b91ac9ff4"
-  integrity sha512-ypNSb+qo4S1QEb4N0PJ1bRxFV5wcsA+SuGX47HqQIc08ArTP5pCXTKS/Rn1FEsOmA+59qdzE4tue+rNLu7xO7A==
+"@open-wa/wa-automate@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@open-wa/wa-automate/-/wa-automate-3.1.0.tgz#0d39719f77baa42eea8b32ae80be06c8d807bf23"
+  integrity sha512-GOVKOTDpkliwYFuLZZwXX7LtTmgtPGoPM/qB6vtulSxlU4tUxC8S8xaK/lbRDWAHz/FyPROMNN18ospf+M4C+w==
   dependencies:
     "@open-wa/wa-decrypt" "^2.0.1"
     "@types/sharp" "^0.26.0"
